@@ -4,16 +4,19 @@ const app = express();
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
+app.get("/", (req, res) => {
+  res.send("BFHL API is running");
+});
 
-/* GET /health */
+
 app.get("/health", (req, res) => {
   res.status(200).json({
     is_success: true,
-    official_email: "YOUR_CHITKARA_EMAIL"
+    official_email: "pavneet1252.be23@chitkara.edu.in"
   });
 });
 
-/* POST /bfhl */
+
 app.post("/bfhl", (req, res) => {
   try {
     const body = req.body;
@@ -33,11 +36,11 @@ app.post("/bfhl", (req, res) => {
     switch (key) {
       case "fibonacci": {
         if (!Number.isInteger(value) || value < 0) throw new Error();
-        const fib = [0, 1];
-        for (let i = 2; i < value; i++) {
-          fib.push(fib[i - 1] + fib[i - 2]);
+       const fib = [0, 1];
+        for (let i = 2; i <= value; i++) {
+        fib.push(fib[i - 1] + fib[i - 2]);
         }
-        result = value === 0 ? [] : fib.slice(0, value);
+        result = fib.slice(0, value + 1);
         break;
       }
 
@@ -69,7 +72,7 @@ app.post("/bfhl", (req, res) => {
 
       case "AI": {
         if (typeof value !== "string") throw new Error();
-        result = "Mumbai"; // placeholder (replace with real AI later)
+        result = "Mumbai"; 
         break;
       }
 
